@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بل ٹریکر ایپ</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+  <div>
+    <h1>بل ٹریکر</h1>
+    <p>بلز اور ادائیگیوں کا مکمل ریکارڈ</p>
+  </div>
+  <span id="connectionStatus" class="connection">کنکشن چیک ہو رہا ہے</span>
+</header>
+
+<main class="container">
+
+  <section class="dashboard">
+    <div class="stat">
+      <span>کل بلز</span>
+      <h2 id="totalBills">0</h2>
+    </div>
+    <div class="stat">
+      <span>کل بل رقم</span>
+      <h2 id="totalAmount">0</h2>
+    </div>
+    <div class="stat">
+      <span>وصول شدہ رقم</span>
+      <h2 id="paidAmount">0</h2>
+    </div>
+    <div class="stat">
+      <span>بقایا رقم</span>
+      <h2 id="dueAmount">0</h2>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 id="formTitle">نیا بل شامل کریں</h2>
+
+    <form id="billForm">
+      <input type="hidden" id="billId">
+
+      <div class="form-grid">
+        <label>بل نمبر
+          <input id="billNo" required placeholder="مثلاً BILL-001">
+        </label>
+
+        <label>کسٹمر کا نام
+          <input id="customer" required placeholder="نام درج کریں">
+        </label>
+
+        <label>بل کی تاریخ
+          <input type="date" id="billDate" required>
+        </label>
+
+        <label>کل رقم
+          <input type="number" id="amount" min="0.01" step="0.01" required>
+        </label>
+
+        <label>وصول شدہ رقم
+          <input type="number" id="paid" min="0" step="0.01" value="0" required>
+        </label>
+
+        <label>تفصیل
+          <input id="description" placeholder="بل کی تفصیل">
+        </label>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn primary" id="saveBtn">بل محفوظ کریں</button>
+        <button type="button" class="btn secondary" id="cancelEdit" hidden>منسوخ کریں</button>
+      </div>
+    </form>
+  </section>
+
+<section class="panel">
+  <h2>پرانا بل واپس حاصل کریں</h2>
+
+  <div class="retrieve-box">
+    <input
+      type="text"
+      id="retrieveBillNo"
+      placeholder="بل نمبر درج کریں"
+    >
+
+    <button
+      type="button"
+      class="btn primary"
+      id="retrieveBtn">
+      بل واپس لائیں
+    </button>
+  </div>
+
+  <div id="retrievedBill" class="retrieved-result"></div>
+</section>
+
+  <section class="panel">
+    <div class="table-heading">
+      <h2>تمام بلز</h2>
+      <input id="searchInput" class="search" placeholder="بل نمبر یا کسٹمر تلاش کریں">
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>بل نمبر</th>
+            <th>کسٹمر</th>
+            <th>تاریخ</th>
+            <th>کل رقم</th>
+            <th>وصول شدہ</th>
+            <th>بقایا</th>
+            <th>حالت</th>
+            <th>ایکشن</th>
+          </tr>
+        </thead>
+        <tbody id="billTable">
+          <tr><td colspan="8">ڈیٹا لوڈ ہو رہا ہے...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p id="message" class="message"></p>
+  </section>
+
+</main>
+
+<footer>
+  <p>بل ٹریکر ایپ | تمام حقوق محفوظ ہیں</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
